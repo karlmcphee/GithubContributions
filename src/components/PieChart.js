@@ -4,9 +4,9 @@ import { Pie } from "react-chartjs-2";
 
 function PieChart({ chartData }) {
   return (
-    <div className="chart-container" style={{backgroundColor: 'lightblue', height: '500px', textAlign: 'center', paddingBottom: '200px'}}>
+    <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
-      <div style={{height: "500px", display: 'flex', alignItems: "center", justifyContent: "center"}}>
+      <div style={{height: "400px", display: 'flex', alignItems: "center", justifyContent: "center"}}>
       <Pie
         data={chartData}
         options={{

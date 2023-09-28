@@ -2,7 +2,7 @@
 import { Bar } from "react-chartjs-2";
 export const BarChart = ({ chartData }) => {
   return (
-    <div style={{textAlign: "center", backgroundColor: "lightblue"}}>
+    <div>
     <div  className="chart-container">
       <h2 style={{ textAlign: "center"}}>Bar Chart</h2>
       <div style={{height: "200px", display: 'flex', alignItems: "center", justifyContent: "center"}}>
