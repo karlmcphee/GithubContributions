@@ -1,8 +1,13 @@
 // components/BarChart.js
+import React from "react";
 import { Bar } from "react-chartjs-2";
-export const BarChart = ({ chartData }) => {
+
+interface chartProps {
+  chartData: any
+  }
+
+export const BarChart = ({ chartData }: chartProps) => {
   return (
-    <div>
     <div  className="chart-container">
       <h2 style={{ textAlign: "center"}}>Bar Chart</h2>
       <div style={{height: "200px", display: 'flex', alignItems: "center", justifyContent: "center"}}>
@@ -21,7 +26,6 @@ export const BarChart = ({ chartData }) => {
         }}
       />
       </div>
-    </div>
     </div>
   );
 };

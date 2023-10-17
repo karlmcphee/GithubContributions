@@ -8,27 +8,30 @@ import Title from "./components/Title";
 import Button from 'react-bootstrap/Button';
 import "./components/css/App.css";
 import Star from './components/Star';
+import axios from 'axios'
+
 
 Chart.register(CategoryScale);
 
 export default function App() {
 
-const requestStats = (input1, input2) => {
-  return Promise.resolve(fetch(`https://api.github.com/repos/${input1}/${input2}/stats/contributors`))
-}
+  interface chartObject {
+    labels?: any,
+    datasets?: any
+    }
+
 const [topPerformer, setTopPerformer] = useState("");
 
   const generateMetrics = async () => {
+    let labels1 : Array<string> = [];
+
     try {
 
-  const response = await requestStats(inputs.field1, inputs.field2)
-  // parse response into json
-  if (response) {
-  const data = await response.json()
-    const labels1 = [];
+    const response = await axios.get(`https://api.github.com/repos/${inputs.field1}/${inputs.field2}/stats/contributors`) 
+    const data = response.data
     const commits = [];
     var topCommits = 0
-    var n2 = 0
+    var n2 = ""
     for (let i = 0; i < data.length; i++) {
     const n = data[i].weeks
     if(data[i].weeks[n.length - 1].c > 0) {
@@ -41,6 +44,9 @@ const [topPerformer, setTopPerformer] = useState("");
     }
   }
   setTopPerformer(n2)
+  console.log("hiii")
+  console.log(n2)
+  console.log("whigwegohg")
   setChartData({labels: labels1, 
   datasets: [
     {
@@ -56,7 +62,7 @@ const [topPerformer, setTopPerformer] = useState("");
       borderColor: "black",
       borderWidth: 2
       }]})
-  }} catch (err) {
+  } catch (err) {
     console.error(err)
   };
   }
@@ -66,11 +72,12 @@ const [topPerformer, setTopPerformer] = useState("");
     field2: 'freeCodeCamp'
   });
  
-  const [chartData, setChartData] = useState({
+  const [chartData, setChartData] = useState<chartObject>({
     labels: [],
     datasets: []
   })
- 
+ console.log("ghowghghhghgg")
+ console.log(topPerformer)
   return (
     <div style={{backgroundColor: 'lightblue', minHeight: '100%'}}>
     <div>
@@ -84,7 +91,7 @@ const [topPerformer, setTopPerformer] = useState("");
     </div>{chartData.labels.length > 0 ?
     <div style={{height: '100px', textAlign: 'center'}} >
       <p>Top Contributor:</p>
-      <Star topPerformer = {topPerformer} />
+      <Star topPerformer ={topPerformer} />
     <BarChart chartData={chartData} />
     <PieChart chartData={chartData} />
     </div> : <div style={{color: "royalblue"}}></div>}

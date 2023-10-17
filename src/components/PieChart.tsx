@@ -2,7 +2,11 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
-function PieChart({ chartData }) {
+interface chartProps {
+chartData: any
+}
+
+function PieChart({ chartData }: chartProps) {
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
